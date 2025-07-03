@@ -1,0 +1,44 @@
+cerc care se misca in cerc
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<svg id="svg" width="600" height="400">
+<circle id="cerc" r="30" fill="yellow" stroke="green" stroke-width="2" />
+</svg>
+<div></div>
+<button onclick="animatie()">Pauza / Start</button>
+ 
+  <script>
+  const cerc = document.getElementById("cerc");
+  const centruX = 100;
+  const centruY = 200;
+  const razaMiscare = 150;
+ 
+  let unghi = -Math.PI / 2;
+  let dUnghi = 0.01;
+  let animatiePornita = true;
+ 
+  function miscaCercul() {
+    if (animatiePornita) {
+      const x = centruX + razaMiscare * Math.cos(unghi);
+      const y = centruY + razaMiscare * Math.sin(unghi);
+ 
+      cerc.setAttribute("cx", x);
+      cerc.setAttribute("cy", y);
+ 
+      unghi += dUnghi;
+    }
+ 
+    requestAnimationFrame(miscaCercul);
+  }
+ 
+  miscaCercul();
+ 
+  function animatie() {
+    animatiePornita = !animatiePornita;
+  }
+</script>
+</body>
+</html>
