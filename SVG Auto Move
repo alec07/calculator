@@ -1,0 +1,39 @@
+După 3 secunde → pornește animația automat cu setTimeout
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG Auto Move</title>
+</head>
+<body>
+ 
+<svg id="myContainer" width="400" height="400" style="background: yellow;">
+<circle id="myAnimation" cx="25" cy="25" r="25" fill="red" />
+</svg>
+ 
+<script>
+  let id = null;
+ 
+  function myMove() {
+    let elem = document.getElementById("myAnimation");
+    let pos = 25;
+ 
+    clearInterval(id);
+    id = setInterval(frame, 10);
+ 
+    function frame() {
+      if (pos >= 375) {
+        clearInterval(id);
+      } else {
+        pos++;
+        elem.setAttribute("cx", pos);
+        elem.setAttribute("cy", pos);
+      }
+    }
+  }
+ 
+  // 👇 Pornește automat după 3 secunde
+  setTimeout(myMove, 3000);
+</script>
+ 
+</body>
+</html>
