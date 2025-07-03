@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Mini Calculator</title>
+</head>
+<body>
+<div>
+<input type="number" id="num1">
+<select id="operation">
+<option value="+">+</option>
+<option value="-">-</option>
+<option value=""></option>
+<option value="/">/</option>
+<option value="^">^</option>
+<option value="sqrt">√</option>
+</select>
+<input type="number" id="num2">
+<span id="result">0</span>
+</div>
+<div id="count">Calcule efectuate: 0</div>
+ 
+  <script>
+    let count = 0;
+    const threshold = 7 * 2; // 14
+ 
+    const num1 = document.getElementById("num1");
+    const num2 = document.getElementById("num2");
+    const operation = document.getElementById("operation");
+ 
+    function calculate() {
+      let a = parseFloat(num1.value);
+      let b = parseFloat(num2.value);
+      let op = operation.value;
+      let result = 0;
+ 
+      // Dacă lipsesc valorile necesare, nu calculăm
+      if (isNaN(a)) return; // num1 e necesar mereu
+      if (op !== "sqrt" && isNaN(b)) return; // b e necesar la toate în afară de sqrt
+ 
+      if (op === "+") result = a + b;
+      if (op === "-") result = a - b;
+      if (op === "*") result = a * b;
+      if (op === "/") result = a / b;
+      if (op === "^") result = a ** b;
+      if (op === "sqrt") result = Math.sqrt(a);
+ 
+      if (result === threshold) {
+        document.getElementById("result").innerText = "WOW!";
+        count += 2;
+      } else {
+        document.getElementById("result").innerText = result;
+        count += 1;
+      }
+ 
+      document.getElementById("count").innerText = "Calcule efectuate: " + count;
+    }
+ 
+    // Adaugă evenimente pentru a calcula automat
+    num1.addEventListener("input", calculate);
+    num2.addEventListener("input", calculate);
+    operation.addEventListener("change", calculate);
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG Bounce Curbat Lent</title>
+</head>
+<body>
+ 
+<svg width="600" height="400" style="background: yellow;">
+<circle id="ball" cx="0" cy="200" r="20" fill="red" />
+</svg>
+ 
+<script>
+  const ball = document.getElementById("ball");
+  let x = 0;
+ 
+  function moveSlowBounce() {
+    setInterval(() => {
+      x += 1; // viteza lentă
+      let y = 200 + 50 * Math.sin(x * 0.05); // curbă moale
+ 
+      ball.setAttribute("cx", x);
+      ball.setAttribute("cy", y);
+    }, 30); // mai lent decât 10 ms
+  }
+ 
+  // începe după 3 secunde
+  setTimeout(moveSlowBounce, 3000);
+</script>
+ 
+</body>
+</html>
